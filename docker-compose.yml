@@ -21,7 +21,6 @@ services:
   omeka-s:
     depends_on:
       - db
-    build: ./
     image: dodeeric/omeka-s:latest 
     ports:
       - "80:80"
