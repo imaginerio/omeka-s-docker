@@ -33,5 +33,9 @@ RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
     </IfModule>
 </FilesMatch>
 
+StartServers 5
+MinSpareServers 3
+MaxSpareServers 10
+
 php_value post_max_size 25M
 php_value upload_max_filesize 25M
