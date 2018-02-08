@@ -32,3 +32,6 @@ RewriteRule ^(.*)$ %{ENV:BASE}/index.php [L]
         Deny from all
     </IfModule>
 </FilesMatch>
+
+php_value post_max_size 25M
+php_value upload_max_filesize 25M
