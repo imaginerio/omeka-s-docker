@@ -30,11 +30,18 @@ RUN curl -J -L -s -k \
 &&  rm /var/www/omeka-s.zip \
 &&  rm -rf /var/www/html \
 &&  mv /var/www/omeka-s /var/www/html \
-&&  chown -R www-data:www-data /var/www/html
 
 COPY ./database.ini /var/www/html/config/database.ini
 COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
+
+# Add some Omeka modules
+
+COPY ./omeka-modules.tar.gz /var/www/html/
+RUN rm -rf /var/www/html/modules
+RUN tar -xzf /var/www/html/omeka-modules.tar.gz 
+
+RUN chown -R www-data:www-data /var/www/html
 
 VOLUME /var/www/html
 
