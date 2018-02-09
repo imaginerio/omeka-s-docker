@@ -40,6 +40,7 @@ COPY ./.htaccess /var/www/html/.htaccess
 COPY ./omeka-modules.tar.gz /var/www/html/
 RUN rm -rf /var/www/html/modules/
 RUN tar -xzf /var/www/html/omeka-modules.tar.gz -C /var/www/html/ 
+RUN rm /var/www/html/omeka-modules.tar.gz
 
 RUN chown -R www-data:www-data /var/www/html
 
