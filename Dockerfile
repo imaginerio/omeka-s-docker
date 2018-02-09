@@ -44,6 +44,7 @@ RUN rm /var/www/html/omeka-modules.tar.gz
 
 RUN chown -R www-data:www-data /var/www/html
 
-VOLUME /var/www/html
+VOLUME /var/www/html/files
+VOLUME /var/www/html/config
 
 CMD ["apache2-foreground"]

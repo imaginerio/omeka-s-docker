@@ -1,27 +1,50 @@
-version: '2'
+version: "2"
 
 services:
-  db:
+  omeka-db:
     image: mysql:5.7
     restart: always
+    networks:
+      - omeka
+    volumes:
+      - omeka-db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: omeka
       MYSQL_DATABASE: omeka
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
 
-  db-admin:
+  omeka-db-admin:
+    depends_on:
+      - omeka-db
     image: phpmyadmin/phpmyadmin:latest
     restart: always
-    links:
-     - db:db
+    networks:
+      - omeka
     ports:
       - "8080:80"
+    links:
+      - omeka-db:db
 
-  omeka-s:
+  omeka-web:
     depends_on:
-      - db
+      - omeka-db
     image: dodeeric/omeka-s:latest 
     restart: always
+    networks:
+      - omeka
     ports:
       - "80:80"
+    links:
+      - omeka-db:db
+    volumes:
+      - omeka-files:/var/www/html/files
+      - omeka-config:/var/www/html/config  
+
+volumes:
+  omeka-db:
+  omeka-files:
+  omeka-config:
+
+networks:
+  omeka:  
