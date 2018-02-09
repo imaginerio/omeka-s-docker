@@ -1,5 +1,8 @@
 FROM php:7.1-apache
 
+# Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH  
+MAINTAINER Eric Dodemont <eric.dodemont@skynet.be>
+
 RUN a2enmod rewrite
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -15,7 +18,7 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
     zlib1g-dev \
     imagemagick
 
-# install the PHP extensions we need
+# Install the PHP extensions we need
 RUN docker-php-ext-install -j$(nproc) iconv mcrypt \
     pdo pdo_mysql mysqli gd
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
