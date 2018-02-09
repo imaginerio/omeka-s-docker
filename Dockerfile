@@ -29,7 +29,7 @@ RUN curl -J -L -s -k \
 &&  unzip -q /var/www/omeka-s.zip -d /var/www/ \
 &&  rm /var/www/omeka-s.zip \
 &&  rm -rf /var/www/html \
-&&  mv /var/www/omeka-s /var/www/html \
+&&  mv /var/www/omeka-s /var/www/html
 
 COPY ./database.ini /var/www/html/config/database.ini
 COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
