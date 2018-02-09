@@ -12,7 +12,7 @@ This will deploy three Docker containers:
 
 - Container 1: db (image: mysql)
 - Container 2: db_admin (image: phpmyadmin/phpmyadmin) (connected to container 1)
-- Container 3: omeka-s (image: dodeeric/omeka-s) (connected to container 1; run behind apache/php; modules or themes can be inserted via docker volumes)
+- Container 3: omeka-s (image: dodeeric/omeka-s) (connected to container 1; run behind apache/php)
 
 With your browser, go to:
 
