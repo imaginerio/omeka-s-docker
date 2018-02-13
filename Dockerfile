@@ -30,6 +30,7 @@ RUN unzip -q /var/www/omeka-s-1.0.1.zip -d /var/www/ \
 &&  mv /var/www/omeka-s/ /var/www/html/
 
 COPY ./database.ini /var/www/html/config/database.ini
+RUN chmod 600 /var/www/html/config/database.ini
 COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
 
