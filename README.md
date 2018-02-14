@@ -28,6 +28,26 @@ Remarks:
 - images will be downloaded automatically from the Docker hub: mysql, phpmyadmin, dodeeric/omeka-s:latest.
 - for the omeka-s container, /var/www/html/files (media files uploaded by the users) and /var/www/html/config/database.ini (credentials for the mysql db) are declared as named volumes (and will survive the remove of the container). Volumes are hosted in the host filesystem (/var/lib/docker/volumes). The mysql container also put the data (omeka db) in a volume.
 
+To stop the containers:
+
+```
+$ sudo docker-compose stop
+```
+
+To remove the containers:
+
+```
+$ sudo docker-compose rm 
+```
+
+Remark: this will not delete the volumes (omeka-s and mysql). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
+
+To login into a container:
+
+```
+$ sudo docker container exec -it <container-id-or-name> bash 
+```
+
 ## Build a new image
 
 If you want to modify the omeka-s image (by changing the Dockerfile file), you will need to build a new image:
@@ -48,24 +68,4 @@ Login in your account (e.g. blabla) on hub.docker.com, and create a repository "
 ```
 $ sudo docker image push blabla/omeka-s:1.0.1-myimage
 $ sudo docker image push blabla/omeka-s:latest
-```
-
-To stop the containers:
-
-```
-$ sudo docker-compose stop
-```
-
-To remove the containers:
-
-```
-$ sudo docker-compose rm 
-```
-
-Remark: this will not delete the volumes (omeka-s and mysql). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
-
-To login into a container:
-
-```
-$ sudo docker container exec -it <container-id-or-name> bash 
 ```
