@@ -7,6 +7,7 @@ MAINTAINER Eric Dodemont <eric.dodemont@skynet.be>
 RUN a2enmod rewrite
 
 ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get -qq update && apt-get -qq -y upgrade
 RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
     unzip \
     libfreetype6-dev \
