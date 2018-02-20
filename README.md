@@ -57,15 +57,15 @@ E.g.:
 ```
 $ git clone https://github.com/dodeeric/omeka-s-docker.git
 $ cd omeka-s-docker
-$ sudo docker image build -t blabla/omeka-s:1.0.1-myimage .
-$ sudo docker image tag blabla/omeka-s:1.0.1-myimage blabla/omeka-s:latest
+$ sudo docker image build -t foo/omeka-s:1.0.1-bar .
+$ sudo docker image tag foo/omeka-s:1.0.1-bar foo/omeka-s:latest
 ```
 
 Upload the image to your Docker hub repository:
 
-Login in your account (e.g. blabla) on hub.docker.com, and create a repository "omeka-s", then upload your customized image:
+Login in your account (e.g. foo) on hub.docker.com, and create a repository "omeka-s", then upload your customized image:
 
 ```
-$ sudo docker image push blabla/omeka-s:1.0.1-myimage
-$ sudo docker image push blabla/omeka-s:latest
+$ sudo docker image push foo/omeka-s:1.0.1-bar
+$ sudo docker image push foo/omeka-s:latest
 ```
