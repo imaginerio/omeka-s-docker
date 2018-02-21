@@ -57,6 +57,11 @@ E.g.:
 ```
 $ git clone https://github.com/dodeeric/omeka-s-docker.git
 $ cd omeka-s-docker
+```
+
+Edit the Dockerfile file.
+
+```
 $ sudo docker image build -t foo/omeka-s:1.0.1-bar .
 $ sudo docker image tag foo/omeka-s:1.0.1-bar foo/omeka-s:latest
 ```
