@@ -74,3 +74,14 @@ Login in your account (e.g. foo) on hub.docker.com, and create a repository "ome
 $ sudo docker image push foo/omeka-s:1.0.1-bar
 $ sudo docker image push foo/omeka-s:latest
 ```
+
+## Use Traefik as proxy 
+
+If you want to access all your web services on port 80 (or 443), you can use the Traefik reverse proxy and load balancer.
+
+Here we have 4 web servers running (phpmyadmin, omeka, jena, gramps). All are reachable on port 80 after launching this command:
+
+```
+$ sudo docker-compose -f docker-compose-traefik-omeka-jena-gramps.yml up -d
+```
+All xxx.dodeeric.be dns names are directed to the Traefik container which will proxy them to the corresponding service container. The xxx.dodeeric.be dns names have to point to the IP of the Docker host.
