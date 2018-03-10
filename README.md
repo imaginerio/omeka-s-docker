@@ -85,3 +85,14 @@ Here we have 4 web servers running (phpmyadmin, omeka, jena, gramps). All are re
 $ sudo docker-compose -f docker-compose-traefik-omeka-jena-gramps.yml up -d
 ```
 All xxx.dodeeric.be dns names are directed to the Traefik container which will proxy them to the corresponding service container. The xxx.dodeeric.be dns names have to point to the IP of the Docker host.
+
+With your browser, go to: (dodeeric.be is replaced by your dns domain; e.g. mydomain.com)
+
+- Omeka-S: http://omeka.mydomain.com
+- PhpMyAdmin: http://pma.mydomain.com
+- Jena: http://jena.mydomain.com
+- Gramps: http://gramps.mydomain.com
+
+Traefik has a management web interface: http://hostname:8080
+
+Only the Traefik container exposes its TCP ports (80, 443, 8080) on the Docker host; the service containers run on the private "network1" network.
