@@ -79,7 +79,7 @@ services:
       - mediawiki:/var/www/html/
     labels:
       - "traefik.backend=mediawiki"
-      - "traefik.frontend.rule=Host:mediawiki.dodeeric.be"
+      - "traefik.frontend.rule=Host:mycommons.dodeeric.be"
 
   traefik:
     image: traefik:latest
