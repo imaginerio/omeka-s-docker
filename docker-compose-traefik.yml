@@ -60,11 +60,26 @@ services:
     restart: always
     networks:
       - network1
+    links:
+      - db:db
     volumes: 
       - gramps:/usr/local/apache2/htdocs
     labels:
       - "traefik.backend=gramps"
       - "traefik.frontend.rule=Host:gramps.dodeeric.be"
+
+  mediawiki:
+    image: mediawiki:latest
+    restart: always
+    networks:
+      - network1
+    links:
+      - db:mysql
+    volumes:
+      - mediawiki:/var/www/html/
+    labels:
+      - "traefik.backend=mediawiki"
+      - "traefik.frontend.rule=Host:mediawiki.dodeeric.be"
 
   traefik:
     image: traefik:latest
@@ -86,6 +101,7 @@ volumes:
   omeka-config:
   jena:
   gramps:
+  mediawiki:
 
 networks:
   network1:  
