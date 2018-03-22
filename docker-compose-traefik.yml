@@ -2,46 +2,46 @@ version: "2"
 
 services:
 
-  omeka-db:
+  db:
     image: mysql:5.7
     restart: always
     networks:
       - network1
     volumes:
-      - omeka-db:/var/lib/mysql
+      - db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: omeka
+      MYSQL_ROOT_PASSWORD: blabla 
       MYSQL_DATABASE: omeka
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
 
-  omeka-db-admin:
+  db-admin:
     depends_on:
-      - omeka-db
+      - db
     image: phpmyadmin/phpmyadmin:latest
     restart: always
     networks:
       - network1
     links:
-      - omeka-db:db
+      - db:db
     labels:
-      - "traefik.backend=omeka-db-admin"
+      - "traefik.backend=db-admin"
       - "traefik.frontend.rule=Host:pma.dodeeric.be"
 
-  omeka-web:
+  omeka:
     depends_on:
-      - omeka-db
+      - db
     image: dodeeric/omeka-s:latest 
     restart: always
     networks:
       - network1
     links:
-      - omeka-db:db
+      - db:db
     volumes:
       - omeka-files:/var/www/html/files
       - omeka-config:/var/www/html/config
     labels:
-      - "traefik.backend=omeka-web"
+      - "traefik.backend=omeka"
       - "traefik.frontend.rule=Host:omeka.dodeeric.be"  
 
   jena:
@@ -81,7 +81,7 @@ services:
       - /dev/null:/traefik.toml
 
 volumes:
-  omeka-db:
+  db:
   omeka-files:
   omeka-config:
   jena:
