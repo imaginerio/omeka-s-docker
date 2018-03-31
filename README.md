@@ -80,7 +80,7 @@ $ sudo docker image push foo/omeka-s:latest
 
 If you want to access all your web services on port 80 (or 443), you can use the Traefik reverse proxy and load balancer.
 
-Here we have 4 web servers running (phpmyadmin, omeka, jena, gramps, mediawiki). All are reachable on port 80 after launching this command:
+Here we have 5 web servers running (phpmyadmin, omeka, jena, gramps, mediawiki). All are reachable on port 80 after launching this command:
 
 ```
 $ sudo docker-compose -f docker-compose-traefik.yml up -d
