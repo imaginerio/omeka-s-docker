@@ -71,6 +71,7 @@ Upload the image to your Docker hub repository:
 Login in your account (e.g. foo) on hub.docker.com, and create a repository "omeka-s", then upload your customized image:
 
 ```
+$ sudo docker login --username=foo
 $ sudo docker image push foo/omeka-s:1.0.1-bar
 $ sudo docker image push foo/omeka-s:latest
 ```
