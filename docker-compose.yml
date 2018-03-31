@@ -9,7 +9,7 @@ services:
     volumes:
       - omeka-db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: omeka
+      MYSQL_ROOT_PASSWORD: blabla 
       MYSQL_DATABASE: omeka
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
