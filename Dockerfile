@@ -24,9 +24,9 @@ RUN docker-php-ext-install -j$(nproc) iconv mcrypt pdo pdo_mysql mysqli gd
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
 # Add the Omeka-S PHP code
-COPY ./omeka-s-1.1.0.zip /var/www/
-RUN unzip -q /var/www/omeka-s-1.1.0.zip -d /var/www/ \
-&&  rm /var/www/omeka-s-1.1.0.zip \
+COPY ./omeka-s-1.1.1.zip /var/www/
+RUN unzip -q /var/www/omeka-s-1.1.1.zip -d /var/www/ \
+&&  rm /var/www/omeka-s-1.1.1.zip \
 &&  rm -rf /var/www/html/ \
 &&  mv /var/www/omeka-s/ /var/www/html/
 
