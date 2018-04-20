@@ -13,15 +13,17 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
-    libpng12-dev \
+    libpng-dev \
     libjpeg-dev \
     libmemcached-dev \
     zlib1g-dev \
     imagemagick
 
 # Install the PHP extensions we need
-RUN docker-php-ext-install -j$(nproc) iconv mcrypt pdo pdo_mysql mysqli gd 
+RUN docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql mysqli gd 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN pecl install mcrypt-1.0.1
+RUN docker-php-ext-enable mcrypt
 
 # Add the Omeka-S PHP code
 COPY ./omeka-s-1.1.1.zip /var/www/
