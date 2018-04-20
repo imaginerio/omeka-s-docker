@@ -2,7 +2,7 @@ version: "2"
 
 services:
   omeka-db:
-          image: mysql:latest
+    image: mysql:5.7
     restart: always
     networks:
       - omeka

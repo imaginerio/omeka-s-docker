@@ -3,7 +3,7 @@ version: "2"
 services:
 
   db:
-    image: mysql:latest
+    image: mysql:5.7
     restart: always
     networks:
       - network1
