@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:apache
 
 # Omeka-S web publishing platform for digital heritage collections (https://omeka.org/s/)
 # Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH  
