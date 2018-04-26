@@ -23,7 +23,7 @@ services:
     networks:
       - network1-dev
     links:
-      - db:db-dev
+      - db-dev:db
     labels:
       - "traefik.backend=db-admin-dev"
       - "traefik.frontend.rule=Host:pma.dodeeric.be"
@@ -36,7 +36,7 @@ services:
     networks:
       - network1-dev
     links:
-      - db:db-dev
+      - db-dev:db
     volumes:
       - omeka-files-dev:/var/www/html/files
       - omeka-config-dev:/var/www/html/config
