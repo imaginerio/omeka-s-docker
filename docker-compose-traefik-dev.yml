@@ -6,7 +6,7 @@ services:
     image: mariadb:latest 
     restart: always
     networks:
-      - network1
+      - network1-dev
     volumes:
       - db-dev:/var/lib/mysql
     environment:
@@ -21,7 +21,7 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
     networks:
-      - network1
+      - network1-dev
     links:
       - db:db-dev
     labels:
@@ -34,7 +34,7 @@ services:
     image: dodeeric/omeka-s:dev
     restart: always
     networks:
-      - network1
+      - network1-dev
     links:
       - db:db-dev
     volumes:
@@ -44,11 +44,11 @@ services:
       - "traefik.backend=omeka-dev"
       - "traefik.frontend.rule=Host:omeka.dodeeric.be"  
 
-  traefik:
+  traefik-dev:
     image: traefik:latest
     restart: always
     networks:
-      - network1
+      - network1-dev
     command: --web --docker --docker.domain=dodeeric.be
     ports:
       - "80:80"
@@ -64,4 +64,4 @@ volumes:
   omeka-config-dev:
 
 networks:
-  network1:  
+  network1-dev:  
