@@ -1,0 +1,67 @@
+version: "2"
+
+services:
+
+  db-dev:
+    image: mariadb:latest 
+    restart: always
+    networks:
+      - network1
+    volumes:
+      - db-dev:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: blabla 
+      MYSQL_DATABASE: omeka
+      MYSQL_USER: omeka
+      MYSQL_PASSWORD: omeka
+
+  db-admin-dev:
+    depends_on:
+      - db-dev
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    networks:
+      - network1
+    links:
+      - db:db-dev
+    labels:
+      - "traefik.backend=db-admin-dev"
+      - "traefik.frontend.rule=Host:pma.dodeeric.be"
+
+  omeka-dev:
+    depends_on:
+      - db-dev
+    image: dodeeric/omeka-s:dev
+    restart: always
+    networks:
+      - network1
+    links:
+      - db:db-dev
+    volumes:
+      - omeka-files-dev:/var/www/html/files
+      - omeka-config-dev:/var/www/html/config
+    labels:
+      - "traefik.backend=omeka-dev"
+      - "traefik.frontend.rule=Host:omeka.dodeeric.be"  
+
+  traefik:
+    image: traefik:latest
+    restart: always
+    networks:
+      - network1
+    command: --web --docker --docker.domain=dodeeric.be
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+
+volumes:
+  db-dev:
+  omeka-files-dev:
+  omeka-config-dev:
+
+networks:
+  network1:  
