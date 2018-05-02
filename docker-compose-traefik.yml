@@ -44,42 +44,16 @@ services:
       - "traefik.backend=omeka"
       - "traefik.frontend.rule=Host:omeka.dodeeric.be"  
 
-  jena:
-    image: stain/jena-fuseki:latest
-    restart: always
-    networks:
-      - network1
-    volumes:
-      - jena:/fuseki
-    labels:
-      - "traefik.backend=jena"
-      - "traefik.frontend.rule=Host:jena.dodeeric.be"
-
   gramps:
     image: httpd:latest
     restart: always
     networks:
       - network1
-    links:
-      - db:db
     volumes: 
       - gramps:/usr/local/apache2/htdocs
     labels:
       - "traefik.backend=gramps"
       - "traefik.frontend.rule=Host:gramps.dodeeric.be"
-
-  mediawiki:
-    image: mediawiki:latest
-    restart: always
-    networks:
-      - network1
-    links:
-      - db:mysql
-    volumes:
-      - mediawiki:/var/www/html/
-    labels:
-      - "traefik.backend=mediawiki"
-      - "traefik.frontend.rule=Host:mycommons.dodeeric.be"
 
   traefik:
     image: traefik:latest
@@ -99,9 +73,7 @@ volumes:
   db:
   omeka-files:
   omeka-config:
-  jena:
   gramps:
-  mediawiki:
 
 networks:
   network1:  
