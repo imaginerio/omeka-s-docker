@@ -14,7 +14,7 @@ $ sudo docker-compose up -d
 
 This will deploy three Docker containers:
 
-- Container 1: mysql
+- Container 1: mariadb (mysql) 
 - Container 2: phpmyadmin (connected to container 1; run behind nginx/php)
 - Container 3: omeka-s (connected to container 1; run behind apache/php)
 
@@ -25,8 +25,8 @@ With your browser, go to:
 
 Remarks:
 
-- images will be downloaded automatically from the Docker hub: mysql, phpmyadmin, dodeeric/omeka-s:latest.
-- for the omeka-s container, /var/www/html/files (media files uploaded by the users) and /var/www/html/config/database.ini (credentials for the mysql db) are declared as named volumes (and will survive the remove of the container). Volumes are hosted in the host filesystem (/var/lib/docker/volumes). The mysql container also put the data (omeka db) in a volume.
+- images will be downloaded automatically from the Docker hub: mariadb:latest, phpmyadmin:latest, dodeeric/omeka-s:latest.
+- for the omeka-s container, /var/www/html/files (media files uploaded by the users) and /var/www/html/config (configuration file with the credentials for the db) are declared as named volumes (and will survive the remove of the container). Volumes are hosted in the host filesystem (/var/lib/docker/volumes). The mariadb container also put the data (omeka-s db in /var/lib/mysql) in a volume.
 
 To stop the containers:
 
@@ -40,7 +40,7 @@ To remove the containers:
 $ sudo docker-compose rm 
 ```
 
-Remark: this will not delete the volumes (omeka-s and mysql). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
+Remark: this will NOT delete the volumes (omeka-s and db). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
 
 To login into a container:
 
@@ -80,7 +80,7 @@ $ sudo docker image push foo/omeka-s:latest
 
 If you want to access all your web services on port 80 (or 443), you can use the Traefik reverse proxy and load balancer.
 
-Here we have 5 web servers running (phpmyadmin, omeka, jena, gramps, mediawiki). All are reachable on port 80 after launching this command:
+Here we have 3 web servers running (phpmyadmin, omeka-s, gramps). All are reachable on port 80 after launching this command:
 
 ```
 $ sudo docker-compose -f docker-compose-traefik.yml up -d
@@ -91,9 +91,7 @@ With your browser, go to: (dodeeric.be is replaced by your dns domain; e.g. mydo
 
 - Omeka-S: http://omeka.mydomain.com
 - PhpMyAdmin: http://pma.mydomain.com
-- Jena: http://jena.mydomain.com
 - Gramps: http://gramps.mydomain.com
-- Mediawiki: http://mycommons.mydomain.com
 
 Traefik has a management web interface: http://hostname:8080
 
