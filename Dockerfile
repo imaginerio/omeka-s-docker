@@ -41,7 +41,7 @@ COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
 
 # Add some Omeka modules
-COPY ./omeka-s-modules.tar.gz /var/www/html/
+COPY ./omeka-s-modules-v2.tar.gz /var/www/html/
 RUN rm -rf /var/www/html/modules/ \
 &&  tar -xzf /var/www/html/omeka-s-modules.tar.gz -C /var/www/html/ \
 &&  rm /var/www/html/omeka-s-modules.tar.gz
