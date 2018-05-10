@@ -23,10 +23,7 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
 # Install the PHP extensions we need
 RUN docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql mysqli gd
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN pecl install mcrypt-1.0.1
-RUN docker-php-ext-enable mcrypt
-RUN pecl install imagick
-RUN docker-php-ext-enable imagick
+RUN pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt && pecl install imagick && docker-php-ext-enable imagick 
 
 # Add the Omeka-S PHP code
 COPY ./omeka-s-1.1.1.zip /var/www/
@@ -45,17 +42,15 @@ RUN rm -rf /var/www/html/modules/ \
 &&  rm /var/www/html/omeka-s-modules-v2.tar.gz
 
 # Create one volume for files and config
-RUN mkdir -p /var/www/html/volume/config/
-RUN mkdir -p /var/www/html/volume/files/
+RUN mkdir -p /var/www/html/volume/config/ && mkdir -p /var/www/html/volume/files/
 COPY ./database.ini /var/www/html/volume/config/
-RUN rm /var/www/html/config/database.ini
-RUN ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini
-RUN rm -Rf /var/www/html/files/
-RUN ln -s /var/www/html/volume/files/ /var/www/html/files
-
-RUN chown -R www-data:www-data /var/www/html/
-RUN chmod 600 /var/www/html/volume/config/database.ini
-RUN chmod 600 /var/www/html/.htaccess
+RUN rm /var/www/html/config/database.ini \
+&& ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
+&& rm -Rf /var/www/html/files/ \
+&& ln -s /var/www/html/volume/files/ /var/www/html/files \
+&& chown -R www-data:www-data /var/www/html/ \
+&& chmod 600 /var/www/html/volume/config/database.ini \
+&& chmod 600 /var/www/html/.htaccess
 
 VOLUME /var/www/html/volume/
 
