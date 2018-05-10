@@ -31,7 +31,7 @@ services:
   omeka:
     depends_on:
       - mariadb
-    image: dodeeric/omeka-s:test 
+    image: dodeeric/omeka-s:latest
     restart: always
     networks:
       - network1
