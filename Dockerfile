@@ -35,8 +35,6 @@ RUN unzip -q /var/www/omeka-s-1.1.1.zip -d /var/www/ \
 &&  rm -rf /var/www/html/ \
 &&  mv /var/www/omeka-s/ /var/www/html/
 
-COPY ./database.ini /var/www/html/config/database.ini
-RUN chmod 600 /var/www/html/config/database.ini
 COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
 
@@ -46,9 +44,19 @@ RUN rm -rf /var/www/html/modules/ \
 &&  tar -xzf /var/www/html/omeka-s-modules-v2.tar.gz -C /var/www/html/ \
 &&  rm /var/www/html/omeka-s-modules-v2.tar.gz
 
-RUN chown -R www-data:www-data /var/www/html/
+# Create one volume for files and config
+RUN mkdir -p /var/www/html/volume/config/
+RUN mkdir -p /var/www/html/volume/files/
+COPY ./database.ini /var/www/html/volume/config/
+RUN rm /var/www/html/config/database.ini
+RUN ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini
+RUN rm -Rf /var/www/html/files/
+RUN ln -s /var/www/html/volume/files/ /var/www/html/files
 
-VOLUME /var/www/html/files/
-VOLUME /var/www/html/config/
+RUN chown -R www-data:www-data /var/www/html/
+RUN chmod 600 /var/www/html/volume/config/database.ini
+RUN chmod 600 /var/www/html/.htaccess
+
+VOLUME /var/www/html/volume/
 
 CMD ["apache2-foreground"]
