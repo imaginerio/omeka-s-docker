@@ -1,0 +1,4 @@
+# Connect to Docker API via TCP/IP in place of Unix socket.
+# Enable Docker API via TCP/IP: vi /etc/docker/daemon.json --> {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}
+# Default: endpoint = "unix:///var/run/docker.sock"
+endpoint = "tcp://192.168.1.120:2375"
