@@ -23,6 +23,8 @@ With your browser, go to:
 - Omeka-S: http://hostname
 - PhpMyAdmin: http://hostname:8080
 
+At that point, you can start configuring your Omeka-S web portal.
+
 Remarks:
 
 - images will be downloaded automatically from the Docker hub: mariadb:latest, phpmyadmin:latest, dodeeric/omeka-s:latest.
@@ -40,7 +42,7 @@ To remove the containers:
 $ sudo docker-compose rm 
 ```
 
-Remark: this will NOT delete the volumes (omeka, mariadb, and db). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
+Remark: this will NOT delete the volumes (omeka, mariadb, and gramps). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
 
 To login into a container:
 
