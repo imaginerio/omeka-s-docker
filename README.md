@@ -42,7 +42,7 @@ To remove the containers:
 $ sudo docker-compose rm 
 ```
 
-Remark: this will NOT delete the volumes (omeka, mariadb, and gramps). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
+Remark: this will NOT delete the volumes (omeka and mariadb). If you launch again "sudo docker-compose up -d", the volumes will be re-used.
 
 To login into a container:
 
@@ -62,6 +62,8 @@ $ cd omeka-s-docker
 ```
 
 Edit the Dockerfile file.
+
+Once done, upload the Docker image:
 
 ```
 $ sudo docker image build -t foo/omeka-s:1.0.1-bar .
