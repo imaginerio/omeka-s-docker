@@ -63,7 +63,7 @@ $ cd omeka-s-docker
 
 Edit the Dockerfile file.
 
-Once done, upload the Docker image:
+Once done, build the new Docker image:
 
 ```
 $ sudo docker image build -t foo/omeka-s:1.0.1-bar .
