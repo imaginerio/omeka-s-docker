@@ -41,6 +41,13 @@ RUN rm -rf /var/www/html/modules/ \
 &&  tar -xzf /var/www/html/omeka-s-modules-v2.tar.gz -C /var/www/html/ \
 &&  rm /var/www/html/omeka-s-modules-v2.tar.gz
 
+# Add some themes
+COPY ./centerrow-v1.1.0.zip ./cozy-v1.1.0.zip ./thedaily-v1.1.0.zip /var/www/html/themes/
+RUN unzip -q /var/www/html/themes/centerrow-v1.1.0.zip -d /var/www/html/themes/ \
+&&  unzip -q /var/www/html/themes/cozy-v1.1.0.zip -d /var/www/html/themes/ \
+&&  unzip -q /var/www/html/themes/thedaily-v1.1.0.zip -d /var/www/html/themes/ \
+&&  rm /var/www/html/themes/centerrow-v1.1.0.zip /var/www/html/themes/cozy-v1.1.0.zip /var/www/html/themes/thedaily-v1.1.0.zip
+
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/ && mkdir -p /var/www/html/volume/files/
 COPY ./database.ini /var/www/html/volume/config/
