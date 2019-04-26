@@ -26,9 +26,9 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt && pecl install imagick && docker-php-ext-enable imagick 
 
 # Add the Omeka-S PHP code
-COPY ./omeka-s-1.2.0.zip /var/www/
-RUN unzip -q /var/www/omeka-s-1.2.0.zip -d /var/www/ \
-&&  rm /var/www/omeka-s-1.2.0.zip \
+COPY ./omeka-s-1.4.0.zip /var/www/
+RUN unzip -q /var/www/omeka-s-1.4.0.zip -d /var/www/ \
+&&  rm /var/www/omeka-s-1.4.0.zip \
 &&  rm -rf /var/www/html/ \
 &&  mv /var/www/omeka-s/ /var/www/html/
 
