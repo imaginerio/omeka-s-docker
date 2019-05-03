@@ -28,7 +28,7 @@ At that point, you can start configuring your Omeka-S web portal.
 Remarks:
 
 - images will be downloaded automatically from the Docker hub: mariadb:latest, phpmyadmin:latest, dodeeric/omeka-s:latest.
-- for the omeka-s container, /var/www/html/files (media files uploaded by the users) and /var/www/html/config/database.ini (configuration file with the credentials for the db) are put in a named volume and will survive the removal of the container. The mariadb container also put the data (omeka-s db in /var/lib/mysql) in a named volume. Volumes are hosted in the host filesystem (/var/lib/docker/volumes).
+- for the omeka-s container, /var/www/html/files (media files uploaded by the users) and /var/www/html/config/database.ini (configuration file with the credentials for the db) are put in a named volume and will survive the removal of the container. The mariadb container also puts the data (omeka-s db in /var/lib/mysql) in a named volume. Volumes are hosted in the host filesystem (/var/lib/docker/volumes).
 
 To stop the containers:
 
