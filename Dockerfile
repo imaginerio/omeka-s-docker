@@ -36,10 +36,10 @@ COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
 
 # Add some Omeka modules
-COPY ./omeka-s-modules-v3.tar.gz /var/www/html/
+COPY ./omeka-s-modules-v4.tar.gz /var/www/html/
 RUN rm -rf /var/www/html/modules/ \
-&&  tar -xzf /var/www/html/omeka-s-modules-v3.tar.gz -C /var/www/html/ \
-&&  rm /var/www/html/omeka-s-modules-v3.tar.gz
+&&  tar -xzf /var/www/html/omeka-s-modules-v4.tar.gz -C /var/www/html/ \
+&&  rm /var/www/html/omeka-s-modules-v4.tar.gz
 
 # Add some themes
 COPY ./centerrow-v1.4.0.zip ./cozy-v1.3.1.zip ./thedaily-v1.4.0.zip /var/www/html/themes/
