@@ -15,8 +15,8 @@ $ sudo docker-compose up -d
 This will deploy three Docker containers:
 
 - Container 1: mariadb (mysql) 
-- Container 2: phpmyadmin (connected to container 1; run behind nginx/php)
-- Container 3: omeka-s (connected to container 1; run behind apache/php)
+- Container 2: phpmyadmin (connected to container 1)
+- Container 3: omeka-s (connected to container 1)
 
 With your browser, go to:
 
@@ -50,7 +50,7 @@ To login into a container:
 $ sudo docker container exec -it <container-id-or-name> bash 
 ```
 
-## Build a new image
+## Build a new image (optional)
 
 If you want to modify the omeka-s image (by changing the Dockerfile file), you will need to build a new image:
 
@@ -80,7 +80,7 @@ $ sudo docker image push foo/omeka-s:1.0.1-bar
 $ sudo docker image push foo/omeka-s:latest
 ```
 
-## Use Traefik as proxy 
+## Use Traefik as proxy (optional) 
 
 If you want to access all your web services on port 80 (or 443), you can use the Traefik reverse proxy and load balancer.
 
@@ -89,6 +89,7 @@ Here we have 3 web servers running (phpmyadmin, omeka-s, gramps). All are reacha
 ```
 $ sudo docker-compose -f docker-compose-traefik.yml up -d
 ```
+
 All xxx.dodeeric.be dns names are directed to the Traefik container which will proxy them to the corresponding service container. The xxx.dodeeric.be dns names have to point to the IP of the Docker host.
 
 With your browser, go to: (dodeeric.be is replaced by your dns domain; e.g. mydomain.com)
