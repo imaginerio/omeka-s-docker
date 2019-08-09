@@ -1,7 +1,7 @@
 FROM php:apache
 
 # Omeka-S web publishing platform for digital heritage collections (https://omeka.org/s/)
-# Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH  
+# Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH
 MAINTAINER Eric Dodemont <eric.dodemont@skynet.be>
 
 RUN a2enmod rewrite
@@ -23,7 +23,7 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
 # Install the PHP extensions we need
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql mysqli gd
-RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt && pecl install imagick && docker-php-ext-enable imagick 
+RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt && pecl install imagick && docker-php-ext-enable imagick
 
 # Add the Omeka-S PHP code
 COPY ./omeka-s-1.4.0.zip /var/www/
@@ -51,12 +51,16 @@ RUN unzip -q /var/www/html/themes/centerrow-v1.4.0.zip -d /var/www/html/themes/ 
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/ && mkdir -p /var/www/html/volume/files/
 COPY ./database.ini /var/www/html/volume/config/
+COPY ./local.config.php /var/www/html/config/local.config.php
 RUN rm /var/www/html/config/database.ini \
+&& rm /var/www/html/config/local.config.php \
 && ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
+&& ln -s /var/www/html/volume/config/local.config.php /var/www/html/config/local.config.php \
 && rm -Rf /var/www/html/files/ \
 && ln -s /var/www/html/volume/files/ /var/www/html/files \
 && chown -R www-data:www-data /var/www/html/ \
 && chmod 600 /var/www/html/volume/config/database.ini \
+&& chmod 600 /var/www/html/.htaccess \
 && chmod 600 /var/www/html/.htaccess
 
 VOLUME /var/www/html/volume/
