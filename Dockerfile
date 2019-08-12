@@ -51,7 +51,7 @@ RUN unzip -q /var/www/html/themes/centerrow-v1.4.0.zip -d /var/www/html/themes/ 
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/ && mkdir -p /var/www/html/volume/files/
 COPY ./database.ini /var/www/html/volume/config/
-COPY ./local.config.php /var/www/html/config/local.config.php
+COPY ./local.config.php /var/www/html/volume/config/
 RUN rm /var/www/html/config/database.ini \
 && rm /var/www/html/config/local.config.php \
 && ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
