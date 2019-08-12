@@ -52,16 +52,14 @@ RUN unzip -q /var/www/html/themes/centerrow-v1.4.0.zip -d /var/www/html/themes/ 
 RUN mkdir -p /var/www/html/volume/config/ && mkdir -p /var/www/html/volume/files/
 COPY ./database.ini /var/www/html/volume/config/
 COPY ./local.config.php /var/www/html/volume/config/
+
 RUN rm /var/www/html/config/database.ini \
-&& rm /var/www/html/config/local.config.php \
 && ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
-&& ln -s /var/www/html/volume/config/local.config.php /var/www/html/config/local.config.php \
 && rm -Rf /var/www/html/files/ \
 && ln -s /var/www/html/volume/files/ /var/www/html/files \
 && chown -R www-data:www-data /var/www/html/ \
 && chmod 600 /var/www/html/volume/config/database.ini \
 && chmod 600 /var/www/html/.htaccess \
-&& chmod 755 /var/www/html/local.config.php
 
 VOLUME /var/www/html/volume/
 
