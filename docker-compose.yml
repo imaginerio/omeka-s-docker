@@ -2,14 +2,14 @@ version: "2"
 
 services:
   mariadb:
-    image: mariadb:latest 
+    image: mariadb:10.3-bionic
     restart: always
     networks:
-      - network1 
+      - network1
     volumes:
       - mariadb:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: blabla 
+      MYSQL_ROOT_PASSWORD: blabla
       MYSQL_DATABASE: omeka
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
@@ -20,7 +20,7 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
     networks:
-      - network1 
+      - network1
     ports:
       - "8080:80"
     links:
@@ -29,10 +29,10 @@ services:
   omeka:
     depends_on:
       - mariadb
-    image: dodeeric/omeka-s:latest 
+    image: ualas/omeka-s:latest
     restart: always
     networks:
-      - network1 
+      - network1
     ports:
       - "80:80"
     links:
@@ -45,4 +45,4 @@ volumes:
   omeka:
 
 networks:
-  network1:  
+  network1:

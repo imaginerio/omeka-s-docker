@@ -59,7 +59,7 @@ RUN rm /var/www/html/config/database.ini \
 && ln -s /var/www/html/volume/files/ /var/www/html/files \
 && chown -R www-data:www-data /var/www/html/ \
 && chmod 600 /var/www/html/volume/config/database.ini \
-&& chmod 600 /var/www/html/.htaccess \
+&& chmod 600 /var/www/html/.htaccess
 
 VOLUME /var/www/html/volume/
 
