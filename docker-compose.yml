@@ -34,16 +34,22 @@ services:
     networks:
       - network1 
     ports:
-      - "8888:80"
+      - "80:80"
     links:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
-      - ./files:/var/www/html/files
+      - files:/var/www/html/files
 
 volumes:
   mariadb:
   omeka:
+  files:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/files
+      o: bind
 
 networks:
   network1:  
