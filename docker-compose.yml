@@ -29,12 +29,12 @@ services:
   omeka:
     depends_on:
       - mariadb
-    image: dodeeric/omeka-s:latest 
+    build: .
     restart: always
     networks:
       - network1 
     ports:
-      - "80:80"
+      - "8888:80"
     links:
       - mariadb:db
     volumes:

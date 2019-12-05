@@ -1,8 +1,4 @@
-FROM php:apache
-
-# Omeka-S web publishing platform for digital heritage collections (https://omeka.org/s/)
-# Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH  
-MAINTAINER Eric Dodemont <eric.dodemont@skynet.be>
+FROM php:7.3-apache
 
 RUN a2enmod rewrite
 
