@@ -45,12 +45,10 @@ RUN unzip -q /var/www/html/themes/centerrow-v1.4.0.zip -d /var/www/html/themes/ 
 &&  rm /var/www/html/themes/centerrow-v1.4.0.zip /var/www/html/themes/cozy-v1.3.1.zip /var/www/html/themes/thedaily-v1.4.0.zip
 
 # Create one volume for files and config
-RUN mkdir -p /var/www/html/volume/config/ && mkdir -p /var/www/html/volume/files/
+RUN mkdir -p /var/www/html/volume/config/
 COPY ./database.ini /var/www/html/volume/config/
 RUN rm /var/www/html/config/database.ini \
 && ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
-&& rm -Rf /var/www/html/files/ \
-&& ln -s /var/www/html/volume/files/ /var/www/html/files \
 && chown -R www-data:www-data /var/www/html/ \
 && chmod 600 /var/www/html/volume/config/database.ini \
 && chmod 600 /var/www/html/.htaccess

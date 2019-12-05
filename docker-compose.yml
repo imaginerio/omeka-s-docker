@@ -39,6 +39,7 @@ services:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
+      - ./files:/var/www/html/files
 
 volumes:
   mariadb:
