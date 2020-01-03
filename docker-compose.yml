@@ -8,6 +8,7 @@ services:
       - network1 
     volumes:
       - mariadb:/var/lib/mysql
+      - ./omeka.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
       MYSQL_ROOT_PASSWORD: blabla 
       MYSQL_DATABASE: omeka
