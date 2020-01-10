@@ -41,6 +41,7 @@ services:
     volumes:
       - omeka:/var/www/html/volume
       - files:/var/www/html/files
+      - modules:/var/www/html/modules
 
 volumes:
   mariadb:
@@ -50,6 +51,12 @@ volumes:
     driver_opts:
       type: none
       device: $PWD/files
+      o: bind
+  modules:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/modules
       o: bind
 
 networks:

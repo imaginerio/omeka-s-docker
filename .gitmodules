@@ -1,0 +1,3 @@
+[submodule "modules/BulkEdit"]
+	path = modules/BulkEdit
+	url = https://github.com/Daniel-KM/Omeka-S-module-BulkEdit.git
