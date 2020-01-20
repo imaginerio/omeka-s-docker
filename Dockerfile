@@ -8,6 +8,7 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
     unzip \
     wget \
     curl \
+    git \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
@@ -41,6 +42,7 @@ COPY ./.htaccess /var/www/html/.htaccess
 # Download modules not added as submodules
 COPY ./modules /var/www/html/modules
 RUN cd /var/www/html/modules/CSVImport && composer install
+RUN cd /var/www/html/modules/IiifServer && composer install
 
 # Add some themes
 COPY ./centerrow-v1.4.0.zip ./cozy-v1.3.1.zip ./thedaily-v1.4.0.zip /var/www/html/themes/
