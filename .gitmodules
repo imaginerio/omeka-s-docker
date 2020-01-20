@@ -1,3 +1,30 @@
 [submodule "modules/BulkEdit"]
 	path = modules/BulkEdit
 	url = https://github.com/Daniel-KM/Omeka-S-module-BulkEdit.git
+[submodule "modules/CleanUrl"]
+	path = modules/CleanUrl
+	url = https://github.com/Daniel-KM/Omeka-S-module-CleanUrl.git
+[submodule "modules/CustomVocab"]
+	path = modules/CustomVocab
+	url = https://github.com/omeka-s-modules/CustomVocab.git
+[submodule "modules/FileSideload"]
+	path = modules/FileSideload
+	url = https://github.com/omeka-s-modules/FileSideload.git
+[submodule "modules/Generic"]
+	path = modules/Generic
+	url = https://github.com/Daniel-KM/Omeka-S-module-Generic.git
+[submodule "modules/Mapping"]
+	path = modules/Mapping
+	url = https://github.com/omeka-s-modules/Mapping.git
+[submodule "modules/MetadataBrowse"]
+	path = modules/MetadataBrowse
+	url = https://github.com/omeka-s-modules/MetadataBrowse.git
+[submodule "modules/NumericDataTypes"]
+	path = modules/NumericDataTypes
+	url = https://github.com/omeka-s-modules/NumericDataTypes.git
+[submodule "modules/UriDereferencer"]
+	path = modules/UriDereferencer
+	url = https://github.com/omeka-s-modules/UriDereferencer.git
+[submodule "modules/ValueSuggest"]
+	path = modules/ValueSuggest
+	url = https://github.com/omeka-s-modules/ValueSuggest.git
