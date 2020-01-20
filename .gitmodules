@@ -28,3 +28,6 @@
 [submodule "modules/ValueSuggest"]
 	path = modules/ValueSuggest
 	url = https://github.com/omeka-s-modules/ValueSuggest.git
+[submodule "modules/CSVImport"]
+	path = modules/CSVImport
+	url = https://github.com/omeka-s-modules/CSVImport.git

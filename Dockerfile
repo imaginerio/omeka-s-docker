@@ -6,20 +6,27 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update && apt-get -qq -y upgrade
 RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
     unzip \
+    wget \
+    curl \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
     libpng-dev \
     libjpeg-dev \
     libmemcached-dev \
+    libzip-dev \
     zlib1g-dev \
     imagemagick \
     libmagickwand-dev
 
 # Install the PHP extensions we need
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql mysqli gd
+RUN docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql mysqli gd zip
 RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt && pecl install imagick && docker-php-ext-enable imagick 
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer |php \
+&& mv composer.phar /usr/local/bin/composer
 
 # Add the Omeka-S PHP code
 COPY ./omeka-s-2.0.2.zip /var/www/
@@ -30,6 +37,10 @@ RUN unzip -q /var/www/omeka-s-2.0.2.zip -d /var/www/ \
 
 COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
+
+# Download modules not added as submodules
+COPY ./modules /var/www/html/modules
+RUN cd /var/www/html/modules/CSVImport && composer install
 
 # Add some themes
 COPY ./centerrow-v1.4.0.zip ./cozy-v1.3.1.zip ./thedaily-v1.4.0.zip /var/www/html/themes/
