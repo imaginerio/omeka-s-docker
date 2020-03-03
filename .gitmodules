@@ -31,6 +31,6 @@
 [submodule "modules/CSVImport"]
 	path = modules/CSVImport
 	url = https://github.com/omeka-s-modules/CSVImport.git
-[submodule "modules/IiifServer"]
-	path = modules/IiifServer
-	url = https://github.com/Daniel-KM/Omeka-S-module-IiifServer.git
+[submodule "themes/imagineRio"]
+	path = themes/imagineRio
+	url = https://github.com/imaginerio/omeka-s-theme.git
