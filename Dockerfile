@@ -27,14 +27,14 @@ RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt && pecl install im
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer |php \
-&& mv composer.phar /usr/local/bin/composer
+    && mv composer.phar /usr/local/bin/composer
 
 # Add the Omeka-S PHP code
-COPY ./omeka-s-2.0.2.zip /var/www/
-RUN unzip -q /var/www/omeka-s-2.0.2.zip -d /var/www/ \
-&&  rm /var/www/omeka-s-2.0.2.zip \
-&&  rm -rf /var/www/html/ \
-&&  mv /var/www/omeka-s/ /var/www/html/
+COPY ./omeka-s-2.1.0.zip /var/www/
+RUN unzip -q /var/www/omeka-s-2.1.0.zip -d /var/www/ \
+    &&  rm /var/www/omeka-s-2.1.0.zip \
+    &&  rm -rf /var/www/html/ \
+    &&  mv /var/www/omeka-s/ /var/www/html/
 
 COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
 COPY ./.htaccess /var/www/html/.htaccess
@@ -42,23 +42,20 @@ COPY ./.htaccess /var/www/html/.htaccess
 # Download modules not added as submodules
 COPY ./modules /var/www/html/modules
 RUN cd /var/www/html/modules/CSVImport && composer install
-RUN cd /var/www/html/modules/IiifServer && composer install
+#RUN cd /var/www/html/modules/IiifServer && composer install
+#RUN cd /var/www/html/modules/ImageServer && composer install
 
 # Add some themes
-COPY ./centerrow-v1.4.0.zip ./cozy-v1.3.1.zip ./thedaily-v1.4.0.zip /var/www/html/themes/
-RUN unzip -q /var/www/html/themes/centerrow-v1.4.0.zip -d /var/www/html/themes/ \
-&&  unzip -q /var/www/html/themes/cozy-v1.3.1.zip -d /var/www/html/themes/ \
-&&  unzip -q /var/www/html/themes/thedaily-v1.4.0.zip -d /var/www/html/themes/ \
-&&  rm /var/www/html/themes/centerrow-v1.4.0.zip /var/www/html/themes/cozy-v1.3.1.zip /var/www/html/themes/thedaily-v1.4.0.zip
+COPY ./themes /var/www/html/themes
 
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/
 COPY ./database.ini /var/www/html/volume/config/
 RUN rm /var/www/html/config/database.ini \
-&& ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
-&& chown -R www-data:www-data /var/www/html/ \
-&& chmod 600 /var/www/html/volume/config/database.ini \
-&& chmod 600 /var/www/html/.htaccess
+    && ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
+    && chown -R www-data:www-data /var/www/html/ \
+    && chmod 600 /var/www/html/volume/config/database.ini \
+    && chmod 600 /var/www/html/.htaccess 
 
 VOLUME /var/www/html/volume/
 
