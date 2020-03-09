@@ -22,6 +22,7 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
 
 # Install the PHP extensions we need
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+
 RUN docker-php-ext-install -j$(nproc) iconv pdo pdo_mysql mysqli gd zip
 RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt && pecl install imagick && docker-php-ext-enable imagick 
 
@@ -54,6 +55,8 @@ RUN unzip -q /var/www/html/themes/centerrow-v1.4.0.zip -d /var/www/html/themes/ 
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/
 COPY ./database.ini /var/www/html/volume/config/
+COPY ./local.config.php /var/www/html/volume/config/
+
 RUN rm /var/www/html/config/database.ini \
 && ln -s /var/www/html/volume/config/database.ini /var/www/html/config/database.ini \
 && chown -R www-data:www-data /var/www/html/ \
