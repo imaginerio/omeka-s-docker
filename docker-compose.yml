@@ -8,6 +8,7 @@ services:
       - network1
     volumes:
       - mariadb:/var/lib/mysql
+      - ./omeka.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
       MYSQL_ROOT_PASSWORD: blabla
       MYSQL_DATABASE: omeka
@@ -29,7 +30,7 @@ services:
   omeka:
     depends_on:
       - mariadb
-    image: ualas/omeka-s:latest
+    build: .
     restart: always
     networks:
       - network1
@@ -39,6 +40,7 @@ services:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
+      - $PWD/files:/var/www/html/files
 
 volumes:
   mariadb:
