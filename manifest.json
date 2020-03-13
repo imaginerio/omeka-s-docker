@@ -1,0 +1,113 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "http://localhost/iiif/3048/manifest",
+  "type": "Manifest",
+  "label": { "none": ["Largo de São Francisco"] },
+  "metadata": [
+    {
+      "label": { "none": ["Identifier"] },
+      "value": { "none": ["0071824cx021-01"] }
+    },
+    {
+      "label": { "none": ["Title"] },
+      "value": { "none": ["Largo de São Francisco"] }
+    },
+    {
+      "label": { "none": ["Description"] },
+      "value": {
+        "none": [
+          "À esquerda a Escola Politécnica, seguida, ao fundo pela clarabóia do Gabinete Português de Leitura, na Rua Camões, e as torres da Igreja do Santíssimo Sacramento."
+        ]
+      }
+    },
+    { "label": { "none": ["Creator"] }, "value": { "none": ["Marc Ferrez"] } },
+    { "label": { "none": ["Date"] }, "value": { "none": ["1890"] } },
+    {
+      "label": { "none": ["Display Date"] },
+      "value": { "none": ["1885 – 1895"] }
+    }
+  ],
+  "summary": {
+    "none": [
+      "À esquerda a Escola Politécnica, seguida, ao fundo pela clarabóia do Gabinete Português de Leitura, na Rua Camões, e as torres da Igreja do Santíssimo Sacramento."
+    ]
+  },
+  "requiredStatement": {
+    "label": { "none": ["Attribution"] },
+    "value": { "none": ["Provided by imagineRio"] }
+  },
+  "thumbnail": [
+    {
+      "id": "http://localhost/iiif-img/3068/full/200,150/0/default.jpg",
+      "type": "Image",
+      "format": "image/jpeg",
+      "width": 200,
+      "height": 150
+    }
+  ],
+  "seeAlso": [
+    {
+      "id": "https://www.wikidata.org/wiki/Q65620482",
+      "type": "Dataset",
+      "format": "Wikidata"
+    },
+    {
+      "id": "http://localhost/api/items/3048",
+      "type": "Dataset",
+      "format": "application/ld+json",
+      "profile": "http://localhost/api-context"
+    }
+  ],
+  "homepage": [
+    {
+      "id": "http://acervos.ims.com.br/portals/#/detailpage/66501",
+      "type": "Text",
+      "label": { "none": ["Instituto Moreira Salles"] },
+      "format": "text/html",
+      "language": ["en_US"]
+    }
+  ],
+  "rights": "https://creativecommons.org/licenses/by/4.0/",
+  "items": [
+    {
+      "@context": "http://iiif.io/api/presentation/3/context.json",
+      "id": "http://localhost/iiif/3048/canvas/3068",
+      "type": "Canvas",
+      "label": { "none": ["0071824cx021-01"] },
+      "requiredStatement": {
+        "label": { "none": ["Attribution"] },
+        "value": { "none": ["Provided by imagineRio"] }
+      },
+      "height": 750,
+      "width": 1000,
+      "items": [
+        {
+          "id": "http://localhost/iiif/3048/annotation-page/3068",
+          "type": "AnnotationPage",
+          "label": { "none": ["0071824cx021-01"] },
+          "items": [
+            {
+              "id": "http://localhost/iiif/3048/annotation/3068",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "http://localhost/iiif-img/3068/full/1000,750/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "service": {
+                  "id": "http://localhost/iiif-img/3068",
+                  "type": "ImageService3",
+                  "profile": "level2"
+                },
+                "height": 750,
+                "width": 1000
+              },
+              "target": "http://localhost/iiif/3048/canvas/3068",
+              "label": { "none": ["0071824cx021-01"] }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
