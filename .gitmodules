@@ -34,3 +34,21 @@
 [submodule "themes/imagineRio"]
 	path = themes/imagineRio
 	url = https://github.com/imaginerio/omeka-s-theme.git
+[submodule "modules/IiifServer"]
+	path = modules/IiifServer
+	url = https://github.com/Daniel-KM/Omeka-S-module-IiifServer.git
+[submodule "modules/UniversalViewer"]
+	path = modules/UniversalViewer
+	url = https://github.com/Daniel-KM/Omeka-S-module-UniversalViewer.git
+[submodule "modules/ImageServer"]
+	path = modules/ImageServer
+	url = https://github.com/Daniel-KM/Omeka-S-module-ImageServer.git
+[submodule "modules/IiifSearch"]
+	path = modules/IiifSearch
+	url = https://github.com/Daniel-KM/Omeka-S-module-IiifSearch.git
+[submodule "modules/Mirador"]
+	path = modules/Mirador
+	url = https://github.com/Daniel-KM/Omeka-S-module-Mirador.git
+[submodule "modules/BulkExport"]
+	path = modules/BulkExport
+	url = https://github.com/Daniel-KM/Omeka-S-module-BulkExport.git
