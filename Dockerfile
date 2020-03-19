@@ -42,8 +42,12 @@ COPY ./.htaccess /var/www/html/.htaccess
 # Download modules not added as submodules
 COPY ./modules /var/www/html/modules
 RUN cd /var/www/html/modules/CSVImport && composer install
-#RUN cd /var/www/html/modules/IiifServer && composer install
-#RUN cd /var/www/html/modules/ImageServer && composer install
+RUN cd /var/www/html/modules/IiifServer && composer install
+RUN cd /var/www/html/modules/ImageServer && composer install
+RUN cd /var/www/html/modules/UniversalViewer && composer install
+RUN cd /var/www/html/modules/Mirador && composer install
+#   && npm install
+
 
 # Add some themes
 COPY ./themes /var/www/html/themes
