@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   mariadb:
@@ -22,8 +22,6 @@ services:
     restart: always
     networks:
       - network1
-    ports:
-      - "8080:80"
     links:
       - mariadb:db
 
@@ -45,8 +43,8 @@ services:
     restart: unless-stopped
     image: staticfloat/nginx-certbot
     ports:
-      - 80:80/tcp
-      - 443:443/tcp
+      - 80:80
+      - 443:443
     environment:
       CERTBOT_EMAIL: dave@axismaps.com
     networks:
