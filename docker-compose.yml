@@ -41,10 +41,23 @@ services:
     volumes:
       - omeka:/var/www/html/volume
       - $PWD/files:/var/www/html/files
+      - letsencrypt_challenges:/var/www/html/.well-known/acme-challenge/
+
+  certbot:
+    depends_on:
+      - omeka
+    image: blacklabelops/letsencrypt
+    networks:
+      - network1
+    volumes:
+      - letsencrypt_certificates:/etc/letsencrypt
+      - letsencrypt_challenges:/var/www/letsencrypt
 
 volumes:
   mariadb:
   omeka:
+  letsencrypt_certificates:
+  letsencrypt_challenges:
 
 networks:
   network1:
