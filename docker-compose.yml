@@ -30,34 +30,35 @@ services:
   omeka:
     depends_on:
       - mariadb
+      - certbot
     build: .
     restart: always
     networks:
       - network1
-    ports:
-      - "80:80"
     links:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
-      - $PWD/files:/var/www/html/files
-      - letsencrypt_challenges:/var/www/html/.well-known/acme-challenge/
+      - $PWD/files:/var/www/html/files 
 
   certbot:
-    depends_on:
-      - omeka
-    image: blacklabelops/letsencrypt
-    networks:
-      - network1
+    image: linuxserver/letsencrypt
+    ports:
+      - "443:443"
+      - "80:80"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=situatedviews.axismaps.io
+      - VALIDATION=http
     volumes:
-      - letsencrypt_certificates:/etc/letsencrypt
-      - letsencrypt_challenges:/var/www/letsencrypt
+      - letsencrypt:/config
 
 volumes:
   mariadb:
   omeka:
-  letsencrypt_certificates:
-  letsencrypt_challenges:
+  letsencrypt: 
 
 networks:
   network1:
