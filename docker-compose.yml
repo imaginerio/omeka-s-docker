@@ -30,7 +30,7 @@ services:
   omeka:
     depends_on:
       - mariadb
-      - certbot
+      - proxy
     build: .
     restart: always
     networks:
@@ -39,26 +39,26 @@ services:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
-      - $PWD/files:/var/www/html/files 
+      - $PWD/files:/var/www/html/files
 
-  certbot:
-    image: linuxserver/letsencrypt
+  proxy:
+    restart: unless-stopped
+    image: staticfloat/nginx-certbot
     ports:
-      - "443:443"
-      - "80:80"
+      - 80:80/tcp
+      - 443:443/tcp
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - URL=situatedviews.axismaps.io
-      - VALIDATION=http
+      CERTBOT_EMAIL: dave@axismaps.com
+    networks:
+      - network1
     volumes:
-      - letsencrypt:/config
+      - ./conf.d:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
 
 volumes:
   mariadb:
   omeka:
-  letsencrypt: 
+  letsencrypt:
 
 networks:
   network1:
