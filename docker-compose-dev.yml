@@ -2,35 +2,49 @@ version: "2"
 
 services:
   mariadb:
-    image: mariadb:latest 
+    image: mariadb:latest
     restart: always
     networks:
-      - network1 
+      - network1
     volumes:
       - mariadb:/var/lib/mysql
+      - ./omeka.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
-      MYSQL_ROOT_PASSWORD: blabla 
+      MYSQL_ROOT_PASSWORD: blabla
       MYSQL_DATABASE: omeka
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
 
+  pma:
+    depends_on:
+      - mariadb
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    networks:
+      - network1
+    ports:
+      - "8080:80"
+    links:
+      - mariadb:db
+
   omeka:
     depends_on:
       - mariadb
-    image: dodeeric/omeka-s:latest 
+    build: .
     restart: always
     networks:
-      - network1 
+      - network1
     ports:
       - "80:80"
     links:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
+      - $PWD/files:/var/www/html/files
 
 volumes:
   mariadb:
   omeka:
 
 networks:
-  network1:  
+  network1:
