@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   mariadb:
@@ -15,36 +15,38 @@ services:
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
 
-  pma:
-    depends_on:
-      - mariadb
-    image: phpmyadmin/phpmyadmin:latest
-    restart: always
-    networks:
-      - network1
-    ports:
-      - "8080:80"
-    links:
-      - mariadb:db
-
   omeka:
     depends_on:
       - mariadb
+      - proxy
     build: .
     restart: always
     networks:
       - network1
-    ports:
-      - "80:80"
     links:
       - mariadb:db
     volumes:
       - omeka:/var/www/html/volume
       - $PWD/files:/var/www/html/files
 
+  proxy:
+    restart: unless-stopped
+    image: staticfloat/nginx-certbot
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      CERTBOT_EMAIL: dave@axismaps.com
+    networks:
+      - network1
+    volumes:
+      - ./conf.d:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
+
 volumes:
   mariadb:
   omeka:
+  letsencrypt:
 
 networks:
   network1:
