@@ -36,6 +36,12 @@ RUN echo 'memory_limit=512M' > /usr/local/etc/php/conf.d/memory-limit.ini
 RUN curl -sS https://getcomposer.org/installer |php \
     && mv composer.phar /usr/local/bin/composer
 
+RUN wget https://www.imagemagick.org/download/ImageMagick.tar.gz \
+    && tar xf ImageMagick.tar.gz
+
+RUN cd ImageMagick-7* && ./configure && make && make install
+RUN ldconfig /usr/local/lib
+
 # Add the Omeka-S PHP code
 COPY ./omeka-s-2.1.2.zip /var/www/
 RUN unzip -q /var/www/omeka-s-2.1.2.zip -d /var/www/ \
