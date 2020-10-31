@@ -1,6 +1,3 @@
-[submodule "modules/BulkEdit"]
-	path = modules/BulkEdit
-	url = https://github.com/Daniel-KM/Omeka-S-module-BulkEdit.git
 [submodule "modules/CleanUrl"]
 	path = modules/CleanUrl
 	url = https://github.com/Daniel-KM/Omeka-S-module-CleanUrl.git
@@ -16,9 +13,6 @@
 [submodule "modules/Mapping"]
 	path = modules/Mapping
 	url = https://github.com/omeka-s-modules/Mapping.git
-[submodule "modules/MetadataBrowse"]
-	path = modules/MetadataBrowse
-	url = https://github.com/omeka-s-modules/MetadataBrowse.git
 [submodule "modules/NumericDataTypes"]
 	path = modules/NumericDataTypes
 	url = https://github.com/omeka-s-modules/NumericDataTypes.git
@@ -31,9 +25,6 @@
 [submodule "modules/CSVImport"]
 	path = modules/CSVImport
 	url = https://github.com/omeka-s-modules/CSVImport.git
-[submodule "themes/imagineRio"]
-	path = themes/imagineRio
-	url = https://github.com/imaginerio/omeka-s-theme.git
 [submodule "modules/IiifServer"]
 	path = modules/IiifServer
 	url = https://github.com/Daniel-KM/Omeka-S-module-IiifServer.git
@@ -43,12 +34,3 @@
 [submodule "modules/ImageServer"]
 	path = modules/ImageServer
 	url = https://github.com/Daniel-KM/Omeka-S-module-ImageServer.git
-[submodule "modules/IiifSearch"]
-	path = modules/IiifSearch
-	url = https://github.com/Daniel-KM/Omeka-S-module-IiifSearch.git
-[submodule "modules/Mirador"]
-	path = modules/Mirador
-	url = https://github.com/Daniel-KM/Omeka-S-module-Mirador.git
-[submodule "modules/BulkExport"]
-	path = modules/BulkExport
-	url = https://github.com/Daniel-KM/Omeka-S-module-BulkExport.git
