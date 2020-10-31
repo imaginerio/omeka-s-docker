@@ -57,17 +57,8 @@ COPY ./modules /var/www/html/modules
 RUN cd /var/www/html/modules/CSVImport && composer install
 RUN cd /var/www/html/modules/IiifServer && composer install --no-dev
 RUN cd /var/www/html/modules/ImageServer && composer install --no-dev
-RUN cd /var/www/html/modules/UniversalViewer && composer install
-RUN cd /var/www/html/modules/Mirador && composer install
-#&& npm install
+RUN cd /var/www/html/modules/UniversalViewer && composer install --no-dev
 
-# Install Mirador from local file
-#COPY ./mirador.zip /var/www/html/modules
-#RUN unzip -o /var/www/html/modules/mirador.zip -d /var/www/html/modules \
-#    &&  rm /var/www/html/modules/mirador.zip
-
-# Add some themes
-COPY ./themes /var/www/html/themes
 
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/

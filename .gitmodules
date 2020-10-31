@@ -1,6 +1,9 @@
 [submodule "modules/CleanUrl"]
 	path = modules/CleanUrl
 	url = https://github.com/Daniel-KM/Omeka-S-module-CleanUrl.git
+[submodule "modules/CSVImport"]
+	path = modules/CSVImport
+	url = https://github.com/omeka-s-modules/CSVImport.git
 [submodule "modules/CustomVocab"]
 	path = modules/CustomVocab
 	url = https://github.com/omeka-s-modules/CustomVocab.git
@@ -10,27 +13,24 @@
 [submodule "modules/Generic"]
 	path = modules/Generic
 	url = https://github.com/Daniel-KM/Omeka-S-module-Generic.git
+[submodule "modules/IiifServer"]
+	path = modules/IiifServer
+	url = https://github.com/Daniel-KM/Omeka-S-module-IiifServer.git
+[submodule "modules/ImageServer"]
+	path = modules/ImageServer
+	url = https://github.com/Daniel-KM/Omeka-S-module-ImageServer.git
 [submodule "modules/Mapping"]
 	path = modules/Mapping
 	url = https://github.com/omeka-s-modules/Mapping.git
 [submodule "modules/NumericDataTypes"]
 	path = modules/NumericDataTypes
 	url = https://github.com/omeka-s-modules/NumericDataTypes.git
+[submodule "modules/UniversalViewer"]
+	path = modules/UniversalViewer
+	url = https://github.com/Daniel-KM/Omeka-S-module-UniversalViewer.git
 [submodule "modules/UriDereferencer"]
 	path = modules/UriDereferencer
 	url = https://github.com/omeka-s-modules/UriDereferencer.git
 [submodule "modules/ValueSuggest"]
 	path = modules/ValueSuggest
 	url = https://github.com/omeka-s-modules/ValueSuggest.git
-[submodule "modules/CSVImport"]
-	path = modules/CSVImport
-	url = https://github.com/omeka-s-modules/CSVImport.git
-[submodule "modules/IiifServer"]
-	path = modules/IiifServer
-	url = https://github.com/Daniel-KM/Omeka-S-module-IiifServer.git
-[submodule "modules/UniversalViewer"]
-	path = modules/UniversalViewer
-	url = https://github.com/Daniel-KM/Omeka-S-module-UniversalViewer.git
-[submodule "modules/ImageServer"]
-	path = modules/ImageServer
-	url = https://github.com/Daniel-KM/Omeka-S-module-ImageServer.git
