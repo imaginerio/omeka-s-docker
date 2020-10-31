@@ -4,6 +4,8 @@
 [submodule "modules/CSVImport"]
 	path = modules/CSVImport
 	url = https://github.com/omeka-s-modules/CSVImport.git
+	update = merge
+	branch = develop
 [submodule "modules/CustomVocab"]
 	path = modules/CustomVocab
 	url = https://github.com/omeka-s-modules/CustomVocab.git
@@ -34,6 +36,3 @@
 [submodule "modules/ValueSuggest"]
 	path = modules/ValueSuggest
 	url = https://github.com/omeka-s-modules/ValueSuggest.git
-[submodule "CSVImport"]
-	update = merge
-	branch = develop
