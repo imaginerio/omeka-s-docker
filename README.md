@@ -69,7 +69,7 @@ sudo docker container exec -it <container-id-or-name> bash
 
 ## Test the containers on localhost
 
-First, to simplify dev and avoid to add `sudo` to all docker command, create a
+First, to simplify dev and avoid to add `sudo` to all docker commands, create a
 group `docker` and include yourself inside it.
 
 ```sh
