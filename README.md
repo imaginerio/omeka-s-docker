@@ -1,5 +1,22 @@
 # Omeka-S in Docker containers
 
+## Prepare the git repository
+
+This Omeka install contains modules managed by git, so you need to init them:
+
+```sh
+git submodule update --init --recursive
+```
+
+To update them, run the following command:
+
+```sh
+git submodule update --remote --merge --recursive
+```
+
+Of course, if some of the modules use composer or npm, you need to update them
+too.
+
 ## Launch the containers
 
 Install Docker and Docker-compose on your host (can be a physical or virtual machine).
