@@ -67,6 +67,54 @@ To login into a container:
 sudo docker container exec -it <container-id-or-name> bash
 ```
 
+## Test the containers on localhost
+
+First, to simplify dev and avoid to add `sudo` to all docker command, create a
+group `docker` and include yourself inside it.
+
+```sh
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+See [post install documentation](https://docs.docker.com/engine/install/linux-postinstall/) for more informations.
+
+Then, from the same directory than above, launch the containers:
+
+```sh
+docker-compose -f docker-compose-dev.yml up -d
+```
+
+Omeka will be available on http://localhost and phpmyadmin on http://localhost:8080
+
+To add a test user if you don't have a personal key, you can use phpmyadmin to
+create a new user with the following password hash: `$2y$10$4zx/vEN4JnYwO07PpGet0eGtI2KACi96aSdVplaMIKsQEHOfAmY1u`,
+(`localtest`) and the role `global_admin`.
+
+To save and display the logs, you can edit the file ".htaccess" at the root of
+the directory in order to replace `production` by `development`, or you can run
+these commands when the containers are **_up_**:
+
+```sh
+docker exec omeka-s-docker_omeka_1 sed -i 's~SetEnv APPLICATION_ENV "production"~SetEnv APPLICATION_ENV "development"~g' /var/www/html/.htaccess
+docker exec omeka-s-docker_omeka_1 sed -i "s~'log' => false,~'log' => true,~g" /var/www/html/config/local.config.php
+docker exec omeka-s-docker_omeka_1 sed -i 's~Logger::NOTICE~Logger::DEBUG~' /var/www/html/config/local.config.php
+```
+
+If you run docker with sudo, the directory "files/" is not mounted: you must set
+the environnement value PWD to the current directory, else you can set the
+current directory inside the file "docker-compose-dev.yml" (not recommended).
+
+If you update the Dockerfile, you need to rebuild the image:
+
+```sh
+docker-compose build
+```
+
+**WARNING**: with the development config, the Omeka files are saved in the
+current directory "files/", so they may be removed by git.
+
 ## Build a new image (optional)
 
 If you want to modify the omeka-s image (by changing the Dockerfile file), you will need to build a new image:
