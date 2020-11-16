@@ -79,6 +79,8 @@ newgrp docker
 ```
 
 See [post install documentation](https://docs.docker.com/engine/install/linux-postinstall/) for more informations.
+Note that by default, containers are saved in /var/lib/docker, so you may have to change it when space is missing.
+
 
 Then, from the same directory than above, launch the containers:
 
@@ -106,10 +108,13 @@ If you run docker with sudo, the directory "files/" is not mounted: you must set
 the environnement value PWD to the current directory, else you can set the
 current directory inside the file "docker-compose-dev.yml" (not recommended).
 
-If you update the Dockerfile, you need to rebuild the image:
+If you update the Dockerfile or the modules, you need to rebuild the image and
+to restart the containers, so the whole process will be:
 
 ```sh
+docker-compose stop
 docker-compose build
+docker-compose -f docker-compose-dev.yml up -d
 ```
 
 **WARNING**: with the development config, the Omeka files are saved in the
