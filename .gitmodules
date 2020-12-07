@@ -1,6 +1,3 @@
-[submodule "modules/CleanUrl"]
-	path = modules/CleanUrl
-	url = https://github.com/Daniel-KM/Omeka-S-module-CleanUrl.git
 [submodule "modules/CSVImport"]
 	path = modules/CSVImport
 	url = https://github.com/omeka-s-modules/CSVImport.git
