@@ -33,3 +33,6 @@
 [submodule "modules/ValueSuggest"]
 	path = modules/ValueSuggest
 	url = https://github.com/omeka-s-modules/ValueSuggest.git
+[submodule "modules/CleanUrl"]
+	path = modules/CleanUrl
+	url = https://github.com/Daniel-KM/Omeka-S-module-CleanUrl
