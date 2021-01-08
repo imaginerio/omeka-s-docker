@@ -18,7 +18,8 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
     libzip-dev \
     zlib1g-dev \
     imagemagick \
-    libmagickwand-dev 
+    libmagickwand-dev \
+    libvips-tools
 
 # Install the PHP extensions we need
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
@@ -43,9 +44,9 @@ RUN cd ImageMagick-7* && ./configure && make && make install
 RUN ldconfig /usr/local/lib
 
 # Add the Omeka-S PHP code
-COPY ./omeka-s-2.1.2.zip /var/www/
-RUN unzip -q /var/www/omeka-s-2.1.2.zip -d /var/www/ \
-    &&  rm /var/www/omeka-s-2.1.2.zip \
+COPY ./omeka-s-3.0.1.zip /var/www/
+RUN unzip -q /var/www/omeka-s-3.0.1.zip -d /var/www/ \
+    &&  rm /var/www/omeka-s-3.0.1.zip \
     &&  rm -rf /var/www/html/ \
     &&  mv /var/www/omeka-s/ /var/www/html/
 
@@ -57,17 +58,8 @@ COPY ./modules /var/www/html/modules
 RUN cd /var/www/html/modules/CSVImport && composer install
 RUN cd /var/www/html/modules/IiifServer && composer install --no-dev
 RUN cd /var/www/html/modules/ImageServer && composer install --no-dev
-RUN cd /var/www/html/modules/UniversalViewer && composer install
-RUN cd /var/www/html/modules/Mirador && composer install
-#&& npm install
+RUN cd /var/www/html/modules/UniversalViewer && composer install --no-dev
 
-# Install Mirador from local file
-#COPY ./mirador.zip /var/www/html/modules
-#RUN unzip -o /var/www/html/modules/mirador.zip -d /var/www/html/modules \
-#    &&  rm /var/www/html/modules/mirador.zip
-
-# Add some themes
-COPY ./themes /var/www/html/themes
 
 # Create one volume for files and config
 RUN mkdir -p /var/www/html/volume/config/
